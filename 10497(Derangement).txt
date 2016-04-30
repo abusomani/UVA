@@ -1,0 +1,42 @@
+package cp;
+
+/*
+Derangement - 
+Suppose that there are n persons numbered 1, 2, ..., n. Let there be n hats also numbered 1, 2, ..., n. 
+We have to find the number of ways in which no one gets the hat having same number as his/her number. 
+Let us assume that the first person takes hat i. There are n - 1 ways for the first person to make such a choice. 
+There are now two possibilities, depending on whether or not person i takes hat 1 in return:
+Person i does not take the hat 1. This case is equivalent to solving the problem with n - 1 persons and 
+n - 1 hats: each of the remaining n - 1 people has precisely 1 forbidden choice from among the remaining 
+n - 1 hats (i's forbidden choice is hat 1).
+Person i takes the hat 1. Now the problem reduces to n - 2 persons and n - 2 hats.
+*/
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Derangement_10497 {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		BigInteger[] der = new BigInteger[805];
+		der[0] = BigInteger.valueOf(1);
+		der[1] = BigInteger.valueOf(0);
+		der[2] = BigInteger.valueOf(1);
+		for(int i=3;i<802;i++)
+		{
+			der[i] = (der[i-1].add(der[i-2])).multiply(BigInteger.valueOf(i-1));
+			//System.out.println(der[i]);
+		}
+		while(true)
+		{
+			int n = in.nextInt();
+			if(n==-1)	break;
+			System.out.println(der[n]);
+		}
+		in.close();
+
+	}
+
+}

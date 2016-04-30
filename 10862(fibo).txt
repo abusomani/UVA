@@ -1,0 +1,32 @@
+package cp;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class fibo_10862 {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		BigInteger[] pat = new BigInteger[2005];
+		pat[1] = BigInteger.valueOf(1);
+		pat[2] = BigInteger.valueOf(3);
+		BigInteger two = BigInteger.valueOf(2);
+		BigInteger one = BigInteger.valueOf(1);
+		BigInteger sum = BigInteger.valueOf(1);
+		for(int i=3;i<2002;i++)
+		{
+			pat[i] = (two.multiply(pat[i-1]).add(sum)).add(one);
+			sum = sum.add(pat[i-1]);
+			//System.out.println(pat[i]);
+		}
+		while(true)
+		{
+			int n = in.nextInt();
+			if(n==0)	break;
+			System.out.println(pat[n]);
+		}
+		in.close();
+	}
+
+}

@@ -1,0 +1,34 @@
+package cp;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+public class fibsum_11161 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		BigInteger[] fib = new BigInteger[1505];
+		BigInteger ans,k;
+		BigInteger two = BigInteger.valueOf(2);
+		fib[1] = BigInteger.valueOf(1);
+		fib[2] = BigInteger.valueOf(1);
+		for(int i=3;i<1502;i++)
+		{
+			fib[i] = fib[i-1].add(fib[i-2]);
+		}
+		for(int j=1;true;j++)
+		{
+			int n = in.nextInt();
+			if(n==0)	break;
+			if((fib[n].mod(two)).equals(BigInteger.ONE))
+				k = fib[n].add(BigInteger.ONE);
+			else
+				k = fib[n];
+			
+			ans = (fib[n+1].subtract(two)).add(k.divide(two));
+		//	System.out.println(fib[n] + " " + fib[n+1] +"   "+ fib[n].mod(two));
+			System.out.println("Set " + j + ":\n" +	ans);
+		}
+		in.close();
+	}
+}
